@@ -5,13 +5,25 @@ export default class MusicGallery extends Component {
 
 	state = {
 
+		artistID: "",
 		tracklist: [],
 	}
 
 	componentDidMount = () => {
 
-		//retorna artista
-		const url =`https://cors-anywhere.herokuapp.com/https://api.deezer.com/artist/931/top?limit=50`
+		this.getArtistTrackIDs();
+	}
+
+	componentDidUpdate(prevProps) {
+        if (prevProps.id !== this.props.id) {
+            this.getArtistTrackIDs(this.props.id);            
+        }
+    }
+
+    getArtistTrackIDs = () => {
+
+    	//retorna top 50 musicas do artista
+		const url =`https://cors-anywhere.herokuapp.com/https://api.deezer.com/artist/${this.props.id}/top?limit=20`
 		return fetch(url).then(response => {
 
 			return response.json().then(data => {
@@ -22,7 +34,8 @@ export default class MusicGallery extends Component {
 				})
 			})
 		})
-	}
+    }
+
 
 	render() {
 	return (

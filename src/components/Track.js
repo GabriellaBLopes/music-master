@@ -12,18 +12,30 @@ export default class Track extends Component {
 
 	componentDidMount() {
 
+		this.getArtistTrack();
+		console.log("componentDidMount");
+	}
+
+	componentDidUpdate(prevProps) {
+        if (prevProps.id !== this.props.id) {
+            this.getArtistTrack(this.props.id);            
+        }
+    }
+
+	getArtistTrack = () => {
+
+		//retorna uma música do artista
 		fetch(`https://cors-anywhere.herokuapp.com/https://api.deezer.com/track/${this.props.id}/`).then(response => {
 			response.json().then(data => {
+				console.log(this.props.id, data)
 				this.setState({
 
 					id: data.id,
 					image: data.album.cover,
 					title: data.title_short,
 				})
-				console.log(data)
 			})
 		})
-		console.log("componentDidMount")
 	}
 
 	render() {

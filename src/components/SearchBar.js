@@ -52,7 +52,11 @@ export default class SearchBar extends Component {
 			<div className="form-group">
 			<span className="input-group">
 			<input placeholder="Search for an artist" type="text" className="form-control" value={this.state.searchContent} onChange={this.handleSearchContentChange} onKeyPress={this.handleKeyPress}/>
+			<span class="input-group-addon">
+			<span class="glyphicon glyphicon-search">
 			</span>
+			</span>
+			</span>			
 			</div>
 			</React.Fragment>
 			)

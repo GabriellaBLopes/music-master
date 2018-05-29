@@ -2,13 +2,19 @@ import React, { Component } from 'react';
 
 export default class Track extends Component {
 
+
 	state = {
 
 		id: "",
 		image: "",
 		icon: "",
 		title: "",
+		previewUrl: "",
+		playbackIcon: "▶",
+		isPlaying: false,
+		currentTimePlayback: 0,
 	}
+
 
 	componentDidMount() {
 
@@ -33,17 +39,43 @@ export default class Track extends Component {
 					id: data.id,
 					image: data.album.cover,
 					title: data.title_short,
+					previewUrl: data.preview,
 				})
 			})
 		})
+	}
+
+	handleTrackPlayback = () => {
+
+
+		if (this.state.isPlaying == false){
+
+			this.setState({
+
+				playbackIcon: "❚❚",
+				isPlaying: true,
+			})
+
+		} else{
+
+			this.setState({
+
+				playbackIcon: "▶",
+				isPlaying: false,
+
+			})
+		}
+
+		this.props.onHandlePlayback(this.state.previewUrl);
+		
 	}
 
 	render() {
 		return (
 			<div className="track" id={this.state.id}>
 			<img src={this.state.image} className="track-img" alt="track" />
-			<div className="track-icon">
-			<div className="track-icon-text"><span>▶</span></div>
+			<div className="track-icon" onClick={this.handleTrackPlayback}>
+			<div className="track-icon-text"><span>{this.state.playbackIcon}</span></div>
 			</div>
 			<p className="track-title">{this.state.title}</p>
 			</div>

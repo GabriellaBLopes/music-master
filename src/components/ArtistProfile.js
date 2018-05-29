@@ -32,9 +32,9 @@ export default class ArtistProfile extends Component {
 					id: data.id,
 					name: data.name,
 					image: data.picture,
-					numberOfFans: data.nb_fans,
+					numberOfFans: data.nb_fan,
 				})
-				console.log(data)
+				console.log(`number of fans: ${data.nb_fan}`);
 			})
 		})
 	}
@@ -48,7 +48,7 @@ export default class ArtistProfile extends Component {
 			<img src={this.state.image} alt="Artist photo" className="Artist-picture" />
 			<div className="Artist-info">
 			<div className="Artist-name">{this.state.name}</div>
-			<div className="Artist-fans">{this.state.numberOfFans}</div>
+			<div className="Artist-fans">{this.state.numberOfFans} fans</div>
 			</div>
 			</div>
 			</React.Fragment>

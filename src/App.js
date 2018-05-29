@@ -24,13 +24,13 @@ class App extends Component {
 
   render() {
     return (
-    <div className="App">
-    <div className="App-title">Music Master</div>
-    <SearchBar onNewSearch={this.handleSearchResult}/>
-    <ArtistProfile id={this.state.artistID}/>
-    <MusicGallery id={this.state.artistID}/>
-   </div>
-    );
+      <div className="App">
+      <div className="App-title">Music Master</div>
+      <SearchBar onNewSearch={this.handleSearchResult}/>
+      <ArtistProfile id={this.state.artistID}/>
+      <MusicGallery id={this.state.artistID}/>
+      </div>
+      );
   }
 }
 
